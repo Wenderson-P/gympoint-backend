@@ -1,4 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
+import bcrypt from 'bcryptjs';
 
 class Admin extends Model {
   static init(sequelize) {
@@ -12,6 +13,11 @@ class Admin extends Model {
         sequelize,
       }
     );
+    return this;
+  }
+
+  checkPassword(password) {
+    return bcrypt.compare(password, this.password_hash);
   }
 }
 
