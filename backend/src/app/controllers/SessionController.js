@@ -1,30 +1,31 @@
 import jwt from 'jsonwebtoken';
-import Admin from '../models/Admin';
+import User from '../models/User';
+import authConfig from '../../config/auth';
 
 class SessionController {
   async store(req, res) {
     const { email, password } = req.body;
 
-    const admin = await Admin.findOne({
+    const user = await User.findOne({
       where: { email },
     });
-    if (!admin) {
-      return res.status('401').json({ error: 'admin not found' });
+    if (!user) {
+      return res.status('401').json({ error: 'user not found' });
     }
 
-    if (!(await admin.checkPassword(password))) {
+    if (!(await user.checkPassword(password))) {
       return res.status(401).json({ error: 'Password does not match' });
     }
 
-    const { id, name } = admin;
+    const { id, name } = user;
     return res.json({
-      admin: {
+      user: {
         id,
         name,
         email,
       },
-      token: jwt.sign({ id }, '6840957b8d818e8f91f51011d550cc1a', {
-        expiresIn: '7d',
+      token: jwt.sign({ id }, authConfig.secret, {
+        expiresIn: authConfig.expiresIn,
       }),
     });
   }

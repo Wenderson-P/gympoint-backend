@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 
 module.exports = {
   up: QueryInterface => {
-    return QueryInterface.bulkInsert('admin', [
+    return QueryInterface.bulkInsert('users', [
       {
         name: 'Admnistrator',
         email: 'admin@gympoint.com.br',
