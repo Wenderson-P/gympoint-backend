@@ -19,7 +19,22 @@ class StudentController {
   }
 
   async update(req, res) {
-    return res.json({ ok: true });
+    const { email, id } = req.body;
+    const student = await Student.findByPk(id);
+
+    if (email !== student.email) {
+      const studentExists = await Student.findOne({
+        where: { email },
+      });
+      if (studentExists) {
+        return res.status(401).json({ error: 'Email already exists' });
+      }
+    }
+    const { name } = await student.update(req.body);
+    return res.json({
+      name,
+      id,
+    });
   }
 }
 
