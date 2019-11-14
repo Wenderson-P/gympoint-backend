@@ -46,14 +46,20 @@ class PlanController {
     if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Validation failed' });
     }
-    const { id } = req.body;
+    const { id, title } = req.body;
 
     const plan = await Plan.findByPk(id);
 
     if (!plan) {
       return res.status(400).json("This plan doesn't exists");
     }
-    const { title, duration, price } = await Plan.update(req.body, {
+    if (plan.title !== title) {
+      const planExists = await Plan.findOne({ where: { title } });
+      if (planExists) {
+        return res.status(400).json('This title is already taken');
+      }
+    }
+    const { duration, price } = await Plan.update(req.body, {
       where: { id },
     });
 
