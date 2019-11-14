@@ -70,6 +70,18 @@ class PlanController {
       price,
     });
   }
+
+  async delete(req, res) {
+    const { id } = req.params;
+    const plan = Plan.findByPk(id, {});
+    if (!plan) {
+      return res.status(400).json({ error: "Plan doesn't exists" });
+    }
+
+    await Plan.destroy({ where: { id } });
+
+    return res.json({ id });
+  }
 }
 
 export default new PlanController();
