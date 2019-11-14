@@ -14,6 +14,11 @@ class Enrollment extends Model {
     );
     return this;
   }
+
+  static associate(models) {
+    this.belongsTo(models.Student, { foreignKey: 'student_id', as: 'student' });
+    this.belongsTo(models.Plan, { foreignKey: 'plan_id', as: 'plan' });
+  }
 }
 
 export default Enrollment;
