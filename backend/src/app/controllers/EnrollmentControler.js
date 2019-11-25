@@ -1,4 +1,4 @@
-import { addMonths, parseISO, format } from 'date-fns';
+import { addMonths, parseISO, format, isBefore, startOfDay } from 'date-fns';
 import * as Yup from 'yup';
 import Enrollment from '../models/Enrollment';
 import Student from '../models/Student';
@@ -29,6 +29,9 @@ class EnrollmentController {
       return res.status(400).json({ error: 'Validation failed' });
     }
 
+    if (isBefore(parseISO(start_date), startOfDay(new Date()))) {
+      return res.status(400).json({ error: 'Past dates are not allowed' });
+    }
     const student = await Student.findByPk(student_id);
 
     if (!student) {
