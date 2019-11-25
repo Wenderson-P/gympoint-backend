@@ -1,5 +1,6 @@
 import { addMonths, parseISO, format, isBefore, startOfDay } from 'date-fns';
 import * as Yup from 'yup';
+import { Op } from 'sequelize';
 import Enrollment from '../models/Enrollment';
 import Student from '../models/Student';
 import Plan from '../models/Plan';
@@ -21,6 +22,18 @@ class EnrollmentController {
   async store(req, res) {
     const { student_id, plan_id, start_date } = req.body;
 
+    const enrollmentExists = await Enrollment.findOne({
+      where: {
+        student_id,
+        plan_id,
+        end_date: {
+          [Op.gte]: [start_date],
+        },
+      },
+    });
+    if (enrollmentExists) {
+      return res.status(400).json({ error: 'Enrollment already exists' });
+    }
     const schema = Yup.object().shape({
       start_date: Yup.date().required(),
     });
