@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import { Op } from 'sequelize';
 import Plan from '../models/Plan';
 
 class PlanController {
@@ -21,7 +22,9 @@ class PlanController {
     }
 
     const planExists = await Plan.findOne({
-      where: { title: req.body.title },
+      where: {
+        title: { [Op.iLike]: req.body.title },
+      },
     });
 
     if (planExists) {
