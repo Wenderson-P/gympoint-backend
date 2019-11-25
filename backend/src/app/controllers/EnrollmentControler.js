@@ -5,6 +5,19 @@ import Student from '../models/Student';
 import Plan from '../models/Plan';
 
 class EnrollmentController {
+  async index(req, res) {
+    const enrollments = await Enrollment.findAll({
+      include: [
+        {
+          model: Student,
+          as: 'student',
+          attributes: ['name'],
+        },
+      ],
+    });
+    return res.json(enrollments);
+  }
+
   async store(req, res) {
     const { student_id, plan_id, start_date } = req.body;
 
