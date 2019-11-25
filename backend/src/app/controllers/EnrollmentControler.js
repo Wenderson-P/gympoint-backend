@@ -72,6 +72,27 @@ class EnrollmentController {
     });
     return res.json({ student, plan, end_date, price });
   }
+
+  async update(req, res) {
+    const { student_id, plan_id } = req.body;
+    const today = format(new Date(), "yyyy-MM-dd'T'HH:mm:ssxxx");
+    const enrollment = await Enrollment.findOne({
+      where: {
+        student_id,
+        plan_id,
+        end_date: {
+          [Op.gte]: [today],
+        },
+      },
+    });
+    if (!enrollment) {
+      return res.status(400).json({ error: "Enrollment doesn't exists" });
+    }
+
+    return res.json({
+      enrollment,
+    });
+  }
 }
 
 export default new EnrollmentController();
