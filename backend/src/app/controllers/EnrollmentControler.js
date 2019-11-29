@@ -4,6 +4,7 @@ import { Op } from 'sequelize';
 import Enrollment from '../models/Enrollment';
 import Student from '../models/Student';
 import Plan from '../models/Plan';
+import Mail from '../../lib/Mail';
 
 class EnrollmentController {
   async index(req, res) {
@@ -63,6 +64,13 @@ class EnrollmentController {
     );
 
     const price = plan.duration * plan.price;
+
+    await Mail.sendMail({
+      to: `${student.name} <${student.email}> `,
+      subject: 'Matricula feita',
+      text: `Olá ${student.name},a sua matricula realizada com sucesso`,
+    });
+
     await Enrollment.create({
       student_id,
       plan_id,
