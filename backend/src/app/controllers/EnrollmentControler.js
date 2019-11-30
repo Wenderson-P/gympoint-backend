@@ -28,7 +28,6 @@ class EnrollmentController {
     const enrollmentExists = await Enrollment.findOne({
       where: {
         student_id,
-        plan_id,
         end_date: {
           [Op.gte]: [start_date],
         },
