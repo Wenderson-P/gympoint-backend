@@ -1,4 +1,5 @@
 import { addMonths, parseISO, format, isBefore, startOfDay } from 'date-fns';
+import pt from 'date-fns/locale/pt';
 import * as Yup from 'yup';
 import { Op } from 'sequelize';
 import Enrollment from '../models/Enrollment';
@@ -65,10 +66,24 @@ class EnrollmentController {
 
     const price = plan.duration * plan.price;
 
+    const formattedEndDate = format(
+      parseISO(end_date),
+      "dd 'de' MMMM' de' yyyy",
+      {
+        locale: pt,
+      }
+    );
     await Mail.sendMail({
       to: `${student.name} <${student.email}> `,
-      subject: 'Matricula feita',
-      text: `Olá ${student.name},a sua matricula realizada com sucesso`,
+      subject: 'Bem vindo ao gympoint!',
+      template: 'enrollment',
+      context: {
+        student: student.name,
+        plan: plan.title,
+        price: plan.price,
+        duration: plan.duration,
+        endDate: formattedEndDate,
+      },
     });
 
     await Enrollment.create({
