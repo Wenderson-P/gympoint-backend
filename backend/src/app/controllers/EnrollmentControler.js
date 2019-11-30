@@ -5,7 +5,7 @@ import { Op } from 'sequelize';
 import Enrollment from '../models/Enrollment';
 import Student from '../models/Student';
 import Plan from '../models/Plan';
-import Queue from '../../lib/Mail';
+import Queue from '../../lib/Queue';
 
 import EnrollmentMail from '../jobs/EnrollmentMail';
 
