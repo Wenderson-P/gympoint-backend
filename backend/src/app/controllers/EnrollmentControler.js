@@ -2,6 +2,7 @@ import { addMonths, parseISO, format, isBefore, startOfDay } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import * as Yup from 'yup';
 import { Op } from 'sequelize';
+import { resolve } from 'path';
 import Enrollment from '../models/Enrollment';
 import Student from '../models/Student';
 import Plan from '../models/Plan';
@@ -73,6 +74,9 @@ class EnrollmentController {
         locale: pt,
       }
     );
+
+    const folder = resolve(__dirname, '..', 'views', 'emails', 'images');
+
     await Mail.sendMail({
       to: `${student.name} <${student.email}> `,
       subject: 'Bem vindo ao gympoint!',
@@ -84,6 +88,13 @@ class EnrollmentController {
         duration: plan.duration,
         endDate: formattedEndDate,
       },
+      attachments: [
+        {
+          filename: 'logo.svg',
+          path: `${folder}/logo.svg`,
+          cid: 'logo',
+        },
+      ],
     });
 
     await Enrollment.create({
