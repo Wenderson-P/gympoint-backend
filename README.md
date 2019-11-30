@@ -23,7 +23,7 @@ This is the login route, accepts a email and a password
 "password" : "test123"
 This request will send back a jwt token, this token will be needed for all the requestions above.
  ```
--routes.post('/students')
+- routes.post('/students')
 ```
 This will create a new student
 	"name" : "Test",
@@ -33,7 +33,7 @@ This will create a new student
 	"height" : 1.80
 ```
 
--routes.put('/students')
+- routes.put('/students')
 ```
 This route will update student data 
 {
@@ -43,6 +43,11 @@ This route will update student data
 }
 ```
 
-- [x] Finish my changes
-- [ ] Push my commits to GitHub
-- [ ] Open a pull request
+- [ ] Create update route in enrollments
+- [ ] Create a delete route in enrollments 
+- [ ] Create a student checkin table
+- [ ] Create a student checkin route
+- [ ] Create help_orders table
+- [ ] Create help_orders put route
+- [ ] Create help_orders get route
+
