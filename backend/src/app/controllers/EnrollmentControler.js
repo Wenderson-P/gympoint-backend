@@ -5,7 +5,9 @@ import { Op } from 'sequelize';
 import Enrollment from '../models/Enrollment';
 import Student from '../models/Student';
 import Plan from '../models/Plan';
-import Mail from '../../lib/Mail';
+import Queue from '../../lib/Mail';
+
+import EnrollmentMail from '../jobs/EnrollmentMail';
 
 class EnrollmentController {
   async index(req, res) {
@@ -72,6 +74,8 @@ class EnrollmentController {
         locale: pt,
       }
     );
+
+    await Queue.add(EnrollmentMail.key, { student, plan, formattedEndDate });
 
     await Enrollment.create({
       student_id,
