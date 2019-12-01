@@ -4,9 +4,7 @@ class CheckinController {
   async index(req, res) {
     const { id } = req.params;
     const checkins = await Checkin.findAll({
-      where: {
-        id,
-      },
+      where: { student_id: id },
     });
     return res.json({
       checkins,
