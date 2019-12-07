@@ -58,10 +58,10 @@ class CheckinController {
         .json({ error: 'The student has already made one checkin today' });
     }
 
-    const checkin = Checkin.create({ student_id: id });
+    Checkin.create({ student_id: id });
 
     return res.json({
-      checkin,
+      sucess: 'Checkin made with success',
     });
   }
 }
