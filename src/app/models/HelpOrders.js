@@ -9,7 +9,7 @@ class HelpOrder extends Model {
         answer: Sequelize.TEXT,
         answer_at: Sequelize.DATE,
       },
-      sequelize
+      { sequelize }
     );
     return this;
   }
