@@ -3,6 +3,26 @@ import HelpOrder from '../models/HelpOrder';
 import Student from '../models/Student';
 
 class HelpOrderController {
+  async index(req, res) {
+    const { id } = req.params;
+
+    const studentExists = await Student.findOne({
+      where: { id },
+    });
+
+    if (!studentExists) {
+      return res.status(400).json({ error: 'Student does not exists' });
+    }
+    const helpOrder = await HelpOrder.findAll({
+      where: {
+        student_id: id,
+      },
+    });
+    return res.json({
+      helpOrder,
+    });
+  }
+
   async store(req, res) {
     const schema = Yup.object().shape({
       question: Yup.string()
