@@ -88,24 +88,61 @@ class EnrollmentController {
   }
 
   async update(req, res) {
-    const { student_id, plan_id } = req.body;
-    const today = format(new Date(), "yyyy-MM-dd'T'HH:mm:ssxxx");
-    const enrollment = await Enrollment.findOne({
-      where: {
-        student_id,
-        plan_id,
-        end_date: {
-          [Op.gte]: [today],
-        },
-      },
+    const schema = Yup.object().shape({
+      plan_id: Yup.number().required(),
+      id: Yup.number().required(),
+      start_date: Yup.date().required(),
     });
+
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: 'Validation failed' });
+    }
+
+    const { id, plan_id, start_date } = req.body;
+
+    const enrollment = await Enrollment.findOne({ where: { id } });
+
     if (!enrollment) {
       return res.status(400).json({ error: "Enrollment doesn't exists" });
     }
 
-    return res.json({
-      enrollment,
+    const plan = await Plan.findOne({
+      where: {
+        id: plan_id,
+      },
     });
+    if (!plan) {
+      return res.status(400).json({ error: "Plan doesn't exists" });
+    }
+
+    if (isBefore(parseISO(start_date), startOfDay(new Date()))) {
+      return res.status(400).json({ error: 'Past dates are not allowed' });
+    }
+
+    const end_date = format(
+      addMonths(parseISO(start_date), plan.duration),
+      "yyyy-MM-dd'T'HH:mm:ssxxx"
+    );
+
+    await Enrollment.update(
+      {
+        plan_id,
+        start_date,
+        end_date,
+      },
+      { where: { id } }
+    );
+
+    return res.json('Enrollment updated');
+  }
+
+  async delete(req, res) {
+    const { id } = req.params;
+    const enrollment = await Enrollment.findByPk(id);
+    await Enrollment.destroy({
+      where: { id },
+    });
+    return res.json(enrollment);
   }
 }
 
