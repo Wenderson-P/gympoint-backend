@@ -6,7 +6,7 @@ class AllHelpOrderController {
       where: {
         answer_at: null,
       },
-      attributes: ['student_id', 'question'],
+      attributes: ['id', 'student_id', 'question'],
     });
     return res.json(helpOrders);
   }
