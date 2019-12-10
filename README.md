@@ -47,11 +47,11 @@ This route will update student data
 }
 ```
 
-- [ ] Create update route in enrollments
-- [ ] Create a delete route in enrollments
+- [x] Create update route in enrollments
+- [x] Create a delete route in enrollments
 - [x] Create a student checkin table
 - [x] Create a student checkin route
 - [x] Create help_orders table
 - [x] Create help_orders post route
-- [] Create help_orders put route
-- [ ] Create help_orders get route
+- [x] Create help_orders put route
+- [x] Create help_orders get route
