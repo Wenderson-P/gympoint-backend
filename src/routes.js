@@ -19,6 +19,8 @@ routes.get('/', (req, res) => {
 routes.post('/sessions', SessionController.store);
 
 routes.use(authMiddleware);
+
+routes.get('/students', StudentController.index);
 routes.post('/students', StudentController.store);
 routes.put('/students', StudentController.update);
 
