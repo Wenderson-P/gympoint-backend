@@ -12,11 +12,17 @@ import EnrollmentMail from '../jobs/EnrollmentMail';
 class EnrollmentController {
   async index(req, res) {
     const enrollments = await Enrollment.findAll({
+      order: [['start_date', 'DESC']],
       include: [
         {
           model: Student,
           as: 'student',
           attributes: ['name'],
+        },
+        {
+          model: Plan,
+          as: 'plan',
+          attributes: ['title'],
         },
       ],
     });
