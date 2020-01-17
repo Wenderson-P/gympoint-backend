@@ -104,8 +104,8 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
     $ git clone https://github.com/Wenderson-P/gympoint-backend
     $ cd gympoint-backend
     $ yarn install
-    
-    <h3>You must change the .env file </h3>
+  
+<h3>You must create a .env file and use the .env.example as reference </h3>
     
 ## Web Version
   
