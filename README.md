@@ -1,4 +1,4 @@
-GYMPOINT
+<h3>GYMPOINT</h3>
 
 Projeto para gerenciar usuários de uma academia.
 O projeto é feito totalmente em javascript.
@@ -46,12 +46,3 @@ This route will update student data
 	"id" : 11
 }
 ```
-
-- [x] Create update route in enrollments
-- [x] Create a delete route in enrollments
-- [x] Create a student checkin table
-- [x] Create a student checkin route
-- [x] Create help_orders table
-- [x] Create help_orders post route
-- [x] Create help_orders put route
-- [x] Create help_orders get route
