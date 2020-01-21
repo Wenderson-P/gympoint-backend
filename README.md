@@ -1,11 +1,17 @@
-<h3>GYMPOINT</h3>
-Project made to manage students of a gym.
-The project is made in javascript with Node.
 
-You have a CRUD of: students,plans,enrollments and help orders.
+<h2 align="center">
+  GYMPOINT
+</h4>
+<p align="center">
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Wenderson-P/gympoint-backend"/>
+        <img alt="Repository size" src="https://img.shields.io/github/languages/count/Wenderson-P/gympoint-backend"/>
+      <img alt="Repository size" src="https://img.shields.io/github/repo-size/Wenderson-P/gympoint-backend"/>
+  </p>
 
 
-## Tool Used
+<h4 align="center">Project made to manage students of a gym.You have a CRUD of: students,plans,enrollments and help orders</h4>
+
+## :wrench: Tools used
 
 * Express
 * Sucrase + Nodemon;
@@ -105,7 +111,7 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
     $ cd gympoint-backend
     $ yarn install
   
-<h3>You must create a .env file and use the .env.example as reference </h3>
+<h3>You must create a .env file! Use the .env.example as reference.</h3>
     
 ## Web Version
   
