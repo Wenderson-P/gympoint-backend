@@ -1,7 +1,9 @@
-
-<h2 align="center">
-  GYMPOINT
-</h4>
+<p align="center"  >
+    <a href="https://github.com/Wenderson-P/gympoint-web">
+        <img src="https://user-images.githubusercontent.com/52503774/72694019-225a1300-3b12-11ea-8285-0afaa3e9d409.png" />
+      </a>
+    <h2 align="center"  >Gympoint</h2>
+</p>
 <p align="center">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Wenderson-P/gympoint-backend"/>
         <img alt="Languages" src="https://img.shields.io/github/languages/count/Wenderson-P/gympoint-backend"/>
@@ -9,7 +11,7 @@
        <img alt="Code quality" src="https://img.shields.io/scrutinizer/quality/g/wenderson-p/gympoint-backend"/>
   </p>
 
-## Table of Contents
+## 📜 Table of Contents
 
 * [About the Project](#-about-the-project)
   * [Made With](#-made-with)
@@ -20,7 +22,7 @@
 * [Web Version](#-web-version)
 * [Mobile Version](#-mobile-version)
 
-## 📜 About the project
+## 🔎 About the project
 This is the backend for a gym manager.The project is divided in Web and mobile  </br>
 
   The web version is for the gym admnistrators, they are able to:
