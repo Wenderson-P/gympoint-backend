@@ -9,10 +9,37 @@
        <img alt="Code quality" src="https://img.shields.io/scrutinizer/quality/g/wenderson-p/gympoint-backend"/>
   </p>
 
+## Table of Contents
 
-<h4 align="center">Project made to manage students of a gym.You have a CRUD of: students,plans,enrollments and help orders</h4>
+* [About the Project](#-about-the-project)
+  * [Made With](#-made-with)
+  * [Routes](#-routes)
+* [Getting Started](#getting-started)
+  * [Requirements](#-requirements)
+  * [Installation](#-installation)
+* [Web Version](#-web-version)
+* [Mobile Version](#-mobile-version)
 
-## :wrench: Tools used
+## 📜 About the project
+This is the backend for a gym manager.The project is divided in Web and mobile  </br>
+
+  The web version is for the gym admnistrators, they are able to:
+  * Add, Edit and Delete students.   </br>
+  * Add, Edit and Delete Plans.  </br>
+  * Add, Edit and Delete Enrollments.   </br>
+  * Answer Help Orders.  </br>
+  
+  The app is only for students, they can:
+  * Check-in( one time per day, 5 times per week)
+  * See profile
+  * Make questions to instructors
+  
+  A email is sent when:
+  * A new enrollment is made
+  * A student makes a help-order
+  * A instructor answer one help-order
+
+## 🧰 Made with
 
 -  [Node.js](https://www.nodejs.org)
 -  [Express](https://expressjs.com/)
@@ -41,7 +68,7 @@ Database:
 * PostGress for default storage
 
 
-## Routes
+## 🚩 Routes
 You can see all the available routes in src/routes.js, here are some examples:
 
 - routes.get('/')
@@ -60,7 +87,7 @@ This request will send back a jwt token, this token will be needed for all the r
 ```
 This will create a new student
 	"name" : "Test",
-	"email" : "teste@gympoint.com.br",
+	"email" : "teste@gympoint.com",
 	"age" : 21,
 	"weight" : 70,
 	"height" : 1.80
@@ -77,10 +104,11 @@ This route will update student data
 }
 ```
 
+## Getting Started
 
-## Requirements
+## 📋 Requirements
 
-For development, you will only need Node.js and a node global package, Yarn, installed in your environement.
+For development, you will only need Node.js and a package manager like yarn or npm, installed in your environement.
 
 ### Node
 - #### Node installation on Windows
@@ -110,14 +138,14 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
 
     $ npm install npm -g
 
-### Yarn installation
+### Yarn installation 
   After installing node, this project will need yarn too, so just run the following command.
 
       $ npm install -g yarn
 
 ---
 
-## Install
+## 🔌 Installation
 
     $ git clone https://github.com/Wenderson-P/gympoint-backend
     $ cd gympoint-backend
@@ -125,6 +153,10 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
   
 <h3>You must create a .env file! Use the .env.example as reference.</h3>
     
-## Web Version
+## 💻 Web Version
   
   [Gympoint-Web](https://github.com/Wenderson-P/gympoint-web)
+  
+## 📱 Mobile Version
+
+  The mobile version is under development!
